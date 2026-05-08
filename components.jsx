@@ -408,29 +408,53 @@ function CCFooter() {
 /* -------------------- Contact modal -------------------- */
 
 function CCContactModal({ open, onClose }) {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async () => {
+    setStatus("sending");
+    try {
+      const res = await fetch("https://formspree.io/f/mojrnpjb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          message: form.message,
+        }),
+      });
+      if (res.ok) setStatus("success");
+      else setStatus("error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   if (!open) return null;
   return (
     <div className="cc-modal-overlay" onClick={onClose}>
       <div className="cc-modal" onClick={e => e.stopPropagation()}>
-        <button className="cc-modal-close" onClick={onClose}><CCIcon name="close" size={20} /></button>
-        {sent ? (
-          <div style={{ textAlign: "center", padding: "48px 16px" }}>
-            <h3 className="cc-h3">Thanks — we'll be in touch.</h3>
-            <p className="cc-text-medium" style={{ marginTop: 14 }}>A team member will reply within one business day.</p>
-            <div style={{ marginTop: 24 }}><CCButton onClick={onClose}>Close</CCButton></div>
+        <button className="cc-modal-close" onClick={onClose}>✕</button>
+        {status === "success" ? (
+          <div className="cc-modal-success">
+            <h3 className="cc-h4">Thanks! We'll be in touch soon.</h3>
+            <p style={{ color: "var(--fg-2)" }}>We typically respond within one business day.</p>
           </div>
         ) : (
           <>
-            <h3 className="cc-h3">Tell us about your project</h3>
-            <p className="cc-text-medium" style={{ marginTop: 8, color: "var(--fg-2)" }}>We'll get back to you within one business day.</p>
-            <form className="cc-form" onSubmit={e => { e.preventDefault(); setSent(true); }}>
-              <label>Name<input required defaultValue="" /></label>
-              <label>Email<input required type="email" defaultValue="" /></label>
-              <label>Company<input defaultValue="" /></label>
-              <label>What can we help with?<textarea rows={3} defaultValue=""></textarea></label>
-              <CCButton onClick={() => {}}>Send message</CCButton>
-            </form>
+            <h2 className="cc-h4">Tell us about your project</h2>
+            <p style={{ color: "var(--fg-2)", marginBottom: 24 }}>We'll get back to you within one business day.</p>
+            <label className="cc-label">Name<input className="cc-input" name="name" value={form.name} onChange={handleChange} /></label>
+            <label className="cc-label">Email<input className="cc-input" name="email" type="email" value={form.email} onChange={handleChange} /></label>
+            <label className="cc-label">Company<input className="cc-input" name="company" value={form.company} onChange={handleChange} /></label>
+            <label className="cc-label">What can we help with?<textarea className="cc-input cc-textarea" name="message" value={form.message} onChange={handleChange} /></label>
+            {status === "error" && <p style={{ color: "red", marginBottom: 12 }}>Something went wrong. Please try again.</p>}
+            <CCButton onClick={handleSubmit} disabled={status === "sending"}>
+              {status === "sending" ? "Sending…" : "Send message"}
+            </CCButton>
           </>
         )}
       </div>
