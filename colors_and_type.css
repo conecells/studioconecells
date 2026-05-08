@@ -1,0 +1,95 @@
+/* =============================================================
+   Conecells — Design tokens: color + typography
+   Referenced by styles.css via @import
+   ============================================================= */
+
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap");
+
+/* ── Global primitives ── */
+:root {
+  /* Brand colour */
+  --color-java:            #1a9e8f;   /* Conecells teal-green */
+  --color-java-light:      #e8f7f5;
+  --color-java-dark:       #127a6e;
+
+  /* Neutrals */
+  --color-white:           #ffffff;
+  --color-neutral-lightest:#f7f7f7;
+  --color-neutral-lighter: #efefef;
+  --color-neutral-light:   #d4d4d4;
+  --color-neutral-mid:     #9a9a9a;
+  --color-neutral-dark:    #555555;
+  --color-neutral-darker:  #2e2e2e;
+  --color-neutral-darkest: #111111;
+
+  /* Foreground scale (used directly in components) */
+  --fg-1: #111111;
+  --fg-2: #555555;
+  --fg-3: #9a9a9a;
+
+  /* Subtle border */
+  --border-subtle: rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans:    "DM Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Colour schemes ── */
+
+/* Scheme 1 — clean white */
+.scheme-1 {
+  --scheme-bg:     var(--color-white);
+  --scheme-fg:     var(--color-neutral-darkest);
+  --scheme-border: rgba(0, 0, 0, 0.10);
+  --scheme-muted:  var(--color-neutral-mid);
+  background-color: var(--scheme-bg);
+  color: var(--scheme-fg);
+}
+
+/* Scheme 2 — java tint (light brand) */
+.scheme-2 {
+  --scheme-bg:     var(--color-java-light);
+  --scheme-fg:     var(--color-neutral-darkest);
+  --scheme-border: rgba(26, 158, 143, 0.18);
+  --scheme-muted:  var(--color-neutral-dark);
+  background-color: var(--scheme-bg);
+  color: var(--scheme-fg);
+}
+
+/* Scheme 3 — mid / java brand */
+.scheme-3 {
+  --scheme-bg:     var(--color-java);
+  --scheme-fg:     var(--color-white);
+  --scheme-border: rgba(255, 255, 255, 0.20);
+  --scheme-muted:  rgba(255, 255, 255, 0.75);
+  background-color: var(--scheme-bg);
+  color: var(--scheme-fg);
+}
+
+/* Scheme 4 — dark */
+.scheme-4 {
+  --scheme-bg:     var(--color-neutral-darkest);
+  --scheme-fg:     var(--color-white);
+  --scheme-border: rgba(255, 255, 255, 0.10);
+  --scheme-muted:  rgba(255, 255, 255, 0.55);
+  background-color: var(--scheme-bg);
+  color: var(--scheme-fg);
+}
+
+/* ── Base reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-1);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
