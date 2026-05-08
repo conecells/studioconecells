@@ -1,7 +1,7 @@
 /* UI-kit-only styles. Pulls in colors_and_type.css from project root.
    Class prefix is cc- to avoid collisions with other css. */
 
-@import url("../../colors_and_type.css");
+@import url("colors_and_type.css");
 
 /* ---------- layout primitives ---------- */
 .cc-section { padding: 64px 5% ; }
