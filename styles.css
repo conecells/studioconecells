@@ -116,7 +116,7 @@
 .cc-logo-cell {
   background: #fff; border-radius: 8px; padding: 18px;
   display: grid; place-items: center;
-  border: 1px solid var(--border-subtle);
+  border: none;
 }
 .cc-logo-cell img { max-height: 56px; max-width: 80%; object-fit: contain; }
 
