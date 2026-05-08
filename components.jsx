@@ -393,7 +393,7 @@ function CCFooter() {
         </div>
         <div className="cc-footer-rule"></div>
         <div className="cc-footer-bottom">
-          <p>© 2025 Conecells. All rights reserved.</p>
+          <p>© 2026 Conecells. All rights reserved.</p>
           <ul className="cc-footer-legal">
             <li><a href="privacy.html">Privacy policy</a></li>
             <li><a href="terms.html">Terms of service</a></li>
