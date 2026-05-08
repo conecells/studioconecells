@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of service — Conecells</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const sections = [
+      { heading: "Agreement", body: [
+        "These terms govern your use of conecells.com and any work we do together. By using the site or engaging us for a project, you agree to them. If you don't agree, please don't use the site.",
+      ]},
+      { heading: "Use of the site", body: [
+        "You're welcome to browse, link to, and quote from this site. Don't try to break it, scrape it at scale, or use it to host content that isn't yours. The usual common-sense rules apply.",
+      ]},
+      { heading: "Project work", body: [
+        "Any client engagement is governed by a separate written agreement signed by both parties. Those terms — scope, fee, schedule, ownership — supersede anything stated here for the work we do together.",
+        "Until a project is paid in full, ownership of deliverables remains with us. Once payment clears, ownership transfers to you, except for our underlying methods, templates, and any third-party assets covered under their own licenses.",
+      ]},
+      { heading: "Intellectual property", body: [
+        "The Conecells name, logo, site copy, and case studies are our property. The work we ship for clients becomes theirs (see above). Don't reproduce our marketing materials without asking first — but we're easy to work with, just ask.",
+      ]},
+      { heading: "Disclaimers", body: [
+        "The site and its content are provided as-is. We try to keep everything accurate, but we make no warranty that it is error-free or always available. Don't rely on it for advice that requires a professional.",
+      ]},
+      { heading: "Limitation of liability", body: [
+        "To the fullest extent permitted by law, our total liability arising from your use of the site is limited to one hundred US dollars. Liability for paid client work is capped under the terms of our project agreement.",
+      ]},
+      { heading: "Changes to these terms", body: [
+        "We may update these terms from time to time. Material changes will be flagged on the site. Continued use after changes means you accept the new terms.",
+      ]},
+      { heading: "Contact", body: [
+        "Questions about these terms? Email legal@conecells.com.",
+      ]},
+    ];
+    function App() {
+      const [contactOpen, setContactOpen] = useState(false);
+      return (
+        <>
+          <CCNavbar onContact={() => setContactOpen(true)} />
+          <CCLegal title="Terms of service" updated="May 7, 2026" sections={sections} />
+          <CCFooter />
+          <CCContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+  <script src="animate.js"></script>
+</body>
+</html>

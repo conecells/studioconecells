@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design — Conecells</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const services = [
+      { icon: "monitor", title: "Web design",
+        body: "Marketing sites, product pages, and editorial layouts that load fast and read effortlessly on every device." },
+      { icon: "smartphone", title: "Product & UX design",
+        body: "From flow maps to high-fidelity screens — interfaces grounded in user research and a clear product story." },
+      { icon: "layers", title: "Design systems",
+        body: "Tokens, components, and documentation your team can actually use. Less reinvention, more shipping." },
+      { icon: "palette", title: "Brand identity",
+        body: "Logos, type, color, motion. A coherent system rather than a one-off mark, built to scale with your company." },
+      { icon: "dashboard", title: "Landing pages",
+        body: "Single-purpose pages built around one decision. Conversion-tested copy and visuals, ready in two weeks." },
+      { icon: "edit", title: "Design audits",
+        body: "An outside read on what's working, what isn't, and where to spend your next sprint of design time." },
+    ];
+    const steps = [
+      { title: "Discover", body: "We listen, ask questions, and align on what you're really trying to achieve." },
+      { title: "Define",   body: "Sharp scope, clear deliverables, and a flat-rate quote — no surprise invoices." },
+      { title: "Design",   body: "Weekly check-ins, working files in your tools, fast turnarounds on revisions." },
+      { title: "Deliver",  body: "Production-ready handoff plus thirty days of post-launch support." },
+    ];
+    const faqs = [
+      { q: "How long does a typical design engagement take?",
+        a: "Most projects run four to eight weeks. A landing page can ship in two; a full product redesign typically takes ten to twelve." },
+      { q: "Do you work with our existing design system?",
+        a: "Yes — we'll work inside your tokens and components, or help you extend them. We can also build a system from scratch if you don't have one yet." },
+      { q: "What deliverables do we get?",
+        a: "Production-ready Figma files, an annotated handoff doc, and exported assets in the formats your engineering team prefers." },
+      { q: "Can you work alongside our internal team?",
+        a: "We frequently embed with in-house teams. We'll match your rituals — standups, design reviews, whatever you already run." },
+    ];
+    function App() {
+      const [contactOpen, setContactOpen] = useState(false);
+      const open = () => setContactOpen(true);
+      return (
+        <>
+          <CCNavbar onContact={open} current="Design" />
+          <CCPageHero
+            eyebrow="Design"
+            title="Design that earns its place in the product."
+            body="We design websites, products, and brand systems for companies who care about craft. Functional, opinionated, and built to last beyond the launch announcement."
+          />
+          <CCServiceGrid
+            eyebrow="What we do"
+            title="Six ways we can help you ship better design."
+            items={services}
+            scheme="scheme-1"
+          />
+          <CCProcess
+            eyebrow="Process"
+            title="A way of working that respects your time."
+            steps={steps}
+            scheme="scheme-2"
+          />
+          <CCTestimonial />
+          <CCFaq items={faqs} onContact={open} />
+          <CCCta onContact={open} />
+          <CCFooter />
+          <CCContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+  <script src="animate.js"></script>
+</body>
+</html>

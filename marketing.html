@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketing — Conecells</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const services = [
+      { icon: "trending_up", title: "Performance marketing",
+        body: "Paid acquisition across search, social, and programmatic. Measured against pipeline, not vanity metrics." },
+      { icon: "search", title: "SEO & content",
+        body: "Technical audits, keyword strategy, and editorial calendars built around how your customers actually search." },
+      { icon: "edit", title: "Email & lifecycle",
+        body: "Onboarding, nurture, win-back. Plain-text emails that read like they came from a person at your company." },
+      { icon: "group", title: "Social & community",
+        body: "An honest channel strategy — which platforms deserve your time, and what to actually post when you're there." },
+      { icon: "dashboard", title: "Campaigns",
+        body: "Concept, copy, art direction, and the ad units to ship it. From launch moments to evergreen creative." },
+      { icon: "monitor", title: "Analytics & reporting",
+        body: "GA4, attribution, dashboards your CFO will trust. We measure what moves the business, not what's easy to count." },
+    ];
+    const steps = [
+      { title: "Audit",   body: "Where you are today: channels, creative, conversion, attribution. The honest version." },
+      { title: "Plan",    body: "A 90-day roadmap with budget, channels, KPIs, and the creative we need to make it work." },
+      { title: "Launch",  body: "Campaigns in market, creative iterations weekly, learnings shared in your channel of choice." },
+      { title: "Compound", body: "Ongoing optimization. The work that turns a good first month into a great fourth quarter." },
+    ];
+    const faqs = [
+      { q: "What budget size do you typically work with?",
+        a: "Our sweet spot is media budgets between $25k and $500k per month. Outside that range we're happy to make a referral." },
+      { q: "Do you handle creative production too?",
+        a: "Yes — concept through final delivery. Ads, landing pages, emails, and the testing infrastructure to know what's working." },
+      { q: "What KPIs do you report on?",
+        a: "Whatever your CFO actually asks about. Usually pipeline, CAC, LTV, and channel-level ROAS — not impressions and clicks." },
+      { q: "How quickly can we get into market?",
+        a: "Two weeks from kick-off to first campaigns live, assuming creative is approved on a normal cadence." },
+    ];
+    function App() {
+      const [contactOpen, setContactOpen] = useState(false);
+      const open = () => setContactOpen(true);
+      return (
+        <>
+          <CCNavbar onContact={open} current="Marketing" />
+          <CCPageHero
+            eyebrow="Marketing"
+            title="Marketing that compounds, not just performs."
+            body="A small, senior team running paid, owned, and earned channels together. Tied to pipeline, reported in plain English, and built to keep working after we're gone."
+          />
+          <CCServiceGrid
+            eyebrow="What we do"
+            title="Six channels, one team, one strategy."
+            items={services}
+            scheme="scheme-1"
+          />
+          <CCFeatures />
+          <CCProcess
+            eyebrow="Process"
+            title="From audit to compounding growth."
+            steps={steps}
+            scheme="scheme-2"
+          />
+          <CCTestimonial />
+          <CCFaq items={faqs} onContact={open} />
+          <CCCta onContact={open} />
+          <CCFooter />
+          <CCContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+  <script src="animate.js"></script>
+</body>
+</html>

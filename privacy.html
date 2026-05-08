@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy policy — Conecells</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const sections = [
+      { heading: "Who we are", body: [
+        "Conecells is a design, strategy, and marketing studio. This policy explains what personal information we collect when you visit conecells.com, get in touch through our contact form, or work with us as a client.",
+        "If anything here is unclear, email us at hello@conecells.com and a real person will reply within one business day.",
+      ]},
+      { heading: "What we collect", body: [
+        "When you contact us, we collect your name, email address, company name, and the contents of the message you send. If you become a client, we collect what we need to do the work — invoicing details, file access credentials, and project communication.",
+        "When you visit the site, our analytics tools log standard request data: IP address, browser type, referring page, and which pages you visited. With your consent, we also use cookies to understand how the site is used in aggregate.",
+      ]},
+      { heading: "How we use it", body: [
+        "We use your information to reply to you, to deliver the work you've engaged us for, to send invoices, and — if you've agreed to it — to share occasional updates about our work. We do not sell your data. Ever.",
+      ]},
+      { heading: "How long we keep it", body: [
+        "Contact form messages are kept for two years, then deleted. Client project data is kept for the duration of the engagement plus seven years for tax and legal compliance, after which it is deleted.",
+      ]},
+      { heading: "Your rights", body: [
+        "You can ask us at any time what data we hold on you, ask us to correct it, or ask us to delete it. Email privacy@conecells.com and we'll respond within thirty days.",
+        "If you're in the EU or UK, you also have the right to lodge a complaint with your local data protection authority.",
+      ]},
+      { heading: "Changes to this policy", body: [
+        "If we change this policy in a meaningful way, we'll update the \"last updated\" date at the top and, where appropriate, give you notice through the site or by email.",
+      ]},
+    ];
+    function App() {
+      const [contactOpen, setContactOpen] = useState(false);
+      return (
+        <>
+          <CCNavbar onContact={() => setContactOpen(true)} />
+          <CCLegal title="Privacy policy" updated="May 7, 2026" sections={sections} />
+          <CCFooter />
+          <CCContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+  <script src="animate.js"></script>
+</body>
+</html>
