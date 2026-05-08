@@ -448,3 +448,34 @@
   }
   .cc-btn:active { transform: translateY(1px); }
 }
+
+/* ---------- modal form ---------- */
+.cc-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--fg-1);
+}
+
+.cc-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  border: 1px solid var(--color-neutral-light);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 150ms;
+}
+
+.cc-input:focus {
+  border-color: var(--color-java);
+}
+
+.cc-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
