@@ -300,7 +300,7 @@ function CCTestimonial() {
         <div className="cc-attribution">
           <div>
             <div style={{ fontWeight: 500 }}>Chukwuemeka Patrick</div>
-            <div style={{ color: "var(--fg-3)" }}>Founder, Myfastmeds</div>
+            <div style={{ color: "var(--fg-3)" }}>Founder, Myfastmed</div>
           </div>
           <div className="cc-vrule"></div>
           <img src="assets/home-testimonial-section.png" alt="MyFastMed" style={{ maxHeight: 48 }} />
